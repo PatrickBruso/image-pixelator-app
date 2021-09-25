@@ -33,10 +33,11 @@ def main():
             filename = values["FILE"]
             if os.path.exists(filename):
                 image = Image.open(values["FILE"])
-                image.thumbnail((500, 500))
                 bio = io.BytesIO()
                 image.save(bio, format="PNG")
                 window["IMAGE"].update(data=bio.getvalue())
+        if event == "Pixelate!":
+            pixel_image_creator.main(image)
 
     window.close()
 
