@@ -19,10 +19,10 @@ for palette in dirs:
 
 def main():
     layout = [
-        [sg.Image(key="IMAGE")],
+        [sg.Image(key="_IMAGE_")],
         [
             sg.Text("Image File"),
-            sg.Input(size=(25, 1), key="FILE"),
+            sg.Input(size=(25, 1), key="_FILE_"),
             sg.FileBrowse(file_types=file_types),
             sg.Button("Load Image"),
         ],
@@ -37,12 +37,12 @@ def main():
         if event == sg.WIN_CLOSED or event == "Cancel":
             break
         if event == "Load Image":
-            filename = values["FILE"]
+            filename = values["_FILE_"]
             if os.path.exists(filename):
-                image = Image.open(values["FILE"])
+                image = Image.open(values["_FILE_"])
                 bio = io.BytesIO()
                 image.save(bio, format="PNG")
-                window["IMAGE"].update(data=bio.getvalue())
+                window["_IMAGE_"].update(data=bio.getvalue())
         if event == "Pixelate!":
             # figure out how to call pixelate program on image and return pixelated copy
             # need to pass the original image and the palette selection
