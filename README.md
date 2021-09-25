@@ -6,6 +6,15 @@ The second goal is to implement a HSL comparison tool to compare the target imag
 HSL instead of RGB. 
 </p>
 
+The next steps are to implement the following within the GUI:
+
+* [x] Load image to pixelate
+* [ ] Dropdown list of palettes to choose from
+    * [ ] Some way to view palettes to make choice
+* [ ] Call pixelate file upon image when Pixelate! button is clicked
+* [ ] Show pixelated copy of image
+* [ ] Ability to save pixelated image to disk
+
 ### Here is an example of the program:
 
 target image:<br>
@@ -13,3 +22,4 @@ target image:<br>
 
 Pixelated image:<br>
 ![Pixelated landscape](Pixel%20Images/pixelimage.png)
+
