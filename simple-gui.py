@@ -9,6 +9,13 @@ file_types = [("JPEG (*.jpg)", "*.jpg"),
 
 # sg.theme("DarkBlue3")
 
+# create list of palette choices for Listbox
+palette_list = []
+dirs = os.listdir("Palettes")
+for palette in dirs:
+    palette_list.append(palette)
+# maybe load palettes the same way you load and image?  But then user would need to have palette on their computer
+
 
 def main():
     layout = [
@@ -19,7 +26,7 @@ def main():
             sg.FileBrowse(file_types=file_types),
             sg.Button("Load Image"),
         ],
-        [sg.Text("Pick a palette"), sg.InputText()],
+        [sg.Text("Pick a palette"), sg.Listbox(palette_list, size=(20, 4), enable_events=False, key="_LIST_")],
         [sg.Button("Pixelate!"), sg.Button("Cancel")]
     ]
 
@@ -37,7 +44,9 @@ def main():
                 image.save(bio, format="PNG")
                 window["IMAGE"].update(data=bio.getvalue())
         if event == "Pixelate!":
-            pixel_image_creator.main(image)
+            # figure out how to call pixelate program on image and return pixelated copy
+            # need to pass the original image and the palette selection
+            new_image = pixel_image_creator.main(image, palette)
 
     window.close()
 
