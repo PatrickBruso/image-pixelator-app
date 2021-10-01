@@ -42,7 +42,7 @@ def main(file_location):  # change to filename and take in the filename and then
     new_image = pixelate(image_copy, palette)
     pixel_image = expand(new_image)
 
-    return pixel_image  # or save new file and then send through the address?
+    return new_image  # or save new file and then send through the address?
 
 
 def shrink(image):
