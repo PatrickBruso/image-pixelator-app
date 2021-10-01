@@ -10,7 +10,7 @@ from simpleimage import SimpleImage
 import math
 
 
-def main():
+def main(file_location):  # change to filename and take in the filename and then open as image
     """
     Receive user inputs for images and palette and then call functions to obtain
     pixelated copy of image.
@@ -21,18 +21,7 @@ def main():
     palette_list = ['cybear9.png', 'endesga32.png', 'ammo8.png', 'dreamscape8.png', 'funkyfuture8.png',
                     'pollen8.png', 'retrocal8.png']
 
-    print("List of files: ")
-    for images in image_list:
-        print(image_list.index(images) + 1, images)
-
-    filename = input("\nGive me a filename: ")
-    # check to make sure filename exists
-    while True:
-        try:
-            image = SimpleImage(f'Images/{filename}')
-            break
-        except FileNotFoundError:
-            filename = input("Not found. Try again: ")
+    image = SimpleImage(file_location)
 
     print("\nList of palettes: ")
     for palettes in palette_list:
@@ -48,12 +37,12 @@ def main():
 
     image_copy = shrink(image)
 
-    image.show()
+    # image.show()
 
     new_image = pixelate(image_copy, palette)
     pixel_image = expand(new_image)
 
-    pixel_image.show()
+    return pixel_image  # or save new file and then send through the address?
 
 
 def shrink(image):
@@ -178,7 +167,7 @@ def pixelate(image, palette):
         x = new_pixel.x
         y = new_pixel.y
         old_pixel = image.get_pixel(x, y)
-        palette_color = color_picker(old_pixel, palette) # call function to determine which color to use from palette
+        palette_color = color_picker(old_pixel, palette)  # call function to determine which color to use from palette
         new_pixel.red = palette_color[0]
         new_pixel.green = palette_color[1]
         new_pixel.blue = palette_color[2]
