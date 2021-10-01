@@ -9,9 +9,9 @@ HSL instead of RGB.
 The next steps are to implement the following within the GUI:
 
 * [x] Load image to pixelate
-* [ ] Dropdown list of palettes to choose from
+* [x] Dropdown list of palettes to choose from
     * [ ] Some way to view palettes to make choice
-* [ ] Call pixelate file upon image when Pixelate! button is clicked
+* [x] Call pixelate file upon image when Pixelate! button is clicked
 * [ ] Show pixelated copy of image
 * [ ] Ability to save pixelated image to disk
 
