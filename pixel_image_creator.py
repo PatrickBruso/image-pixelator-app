@@ -10,39 +10,22 @@ from simpleimage import SimpleImage
 import math
 
 
-def main(file_location):  # change to filename and take in the filename and then open as image
+def main(file_location, palette_name):  # change to filename and take in the filename and then open as image
     """
-    Receive user inputs for images and palette and then call functions to obtain
+    Receive user inputs for image and palette and then call functions to obtain
     pixelated copy of image.
     :return: original image and pixelated copy of image
     """
-    # create lists for the images and the palettes
-    image_list = ['dog.png', 'landscape.jpg', 'landscape.png']
-    palette_list = ['cybear9.png', 'endesga32.png', 'ammo8.png', 'dreamscape8.png', 'funkyfuture8.png',
-                    'pollen8.png', 'retrocal8.png']
 
     image = SimpleImage(file_location)
 
-    print("\nList of palettes: ")
-    for palettes in palette_list:
-        print(palette_list.index(palettes) + 1, palettes)
-
-    palette_name = input("\nGive me a palette choice: ")
-    while True:
-        try:
-            palette = SimpleImage(f'Palettes/{palette_name}')
-            break
-        except FileNotFoundError:
-            filename = input("Not found. Try again: ")
+    palette = SimpleImage(f'Palettes/{palette_name}')
 
     image_copy = shrink(image)
-
-    # image.show()
-
     new_image = pixelate(image_copy, palette)
     pixel_image = expand(new_image)
 
-    return new_image  # or save new file and then send through the address?
+    pixel_image.show()  # or save new file and then send through the address?
 
 
 def shrink(image):
