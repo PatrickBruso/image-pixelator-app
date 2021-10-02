@@ -10,9 +10,10 @@ The next steps are to implement the following within the GUI:
 
 * [x] Load image to pixelate
 * [x] Dropdown list of palettes to choose from
-    * [ ] Some way to view palettes to make choice
+    * [x] Some way to view palettes to make choice
 * [x] Call pixelate file upon image when Pixelate! button is clicked
-* [ ] Show pixelated copy of image
+* [x] Show pixelated copy of image
+  * [ ] Show pixelated copy of image in GUI window instead of as separate popup
 * [ ] Ability to save pixelated image to disk
 
 ### Here is an example of the program:
