@@ -51,7 +51,7 @@ def main():
 
         if event == "Show Palette":
             palette_choice = ' '.join(values["_LIST_"])
-            sg.popup(title=f'{palette_choice}', image=f'Palettes/{palette_choice}')
+            sg.popup(title=f'{palette_choice}', image=f'Large_Palettes/{palette_choice}')
 
         if event == "Pixelate!":
             filename = values["_FILE_"]
