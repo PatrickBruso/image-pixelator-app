@@ -14,7 +14,6 @@ palette_list = []
 dirs = os.listdir("Palettes")
 for palette in dirs:
     palette_list.append(palette)
-# maybe load palettes the same way you load and image?  But then user would need to have palette on their computer
 
 
 def main():
@@ -52,8 +51,7 @@ def main():
 
         if event == "Show Palette":
             palette_choice = ' '.join(values["_LIST_"])
-            palette_pic = Image.open(f'Palettes/{palette_choice}')
-            sg.popup(palette_pic)
+            sg.popup(title=f'{palette_choice}', image=f'Palettes/{palette_choice}')
 
         if event == "Pixelate!":
             filename = values["_FILE_"]
