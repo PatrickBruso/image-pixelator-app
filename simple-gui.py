@@ -50,6 +50,11 @@ def main():
                 image.save(bio, format="PNG")
                 window["_IMAGE_"].update(data=bio.getvalue())
 
+        if event == "Show Palette":
+            palette_choice = ' '.join(values["_LIST_"])
+            palette_pic = Image.open(f'Palettes/{palette_choice}')
+            sg.popup(palette_pic)
+
         if event == "Pixelate!":
             filename = values["_FILE_"]
             palette_choice = ' '.join(values["_LIST_"])
