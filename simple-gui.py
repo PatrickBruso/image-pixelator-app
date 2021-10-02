@@ -26,7 +26,11 @@ def main():
             sg.FileBrowse(file_types=file_types),
             sg.Button("Load Image"),
         ],
-        [sg.Text("Pick a palette"), sg.Listbox(palette_list, size=(20, 4), enable_events=False, key="_LIST_")], # enable events true and then have a popup of the palette when you click on that option? sg.Popup("license plate" , plate , keep_on_top=True)
+        [
+            sg.Text("Pick a palette"),
+            sg.Listbox(palette_list, size=(20, 4), enable_events=False, key="_LIST_"),
+            sg.Button("Show Palette")
+        ],
         [sg.Button("Pixelate!"), sg.Button("Cancel")]
     ]
 
@@ -34,8 +38,10 @@ def main():
 
     while True:
         event, values = window.read()
+
         if event == sg.WIN_CLOSED or event == "Cancel":
             break
+
         if event == "Load Image":
             filename = values["_FILE_"]
             if os.path.exists(filename):
@@ -43,13 +49,15 @@ def main():
                 bio = io.BytesIO()
                 image.save(bio, format="PNG")
                 window["_IMAGE_"].update(data=bio.getvalue())
+
         if event == "Pixelate!":
-            filename = values["_FILE_"] # what if we sent the filename through to the image_creator file instead of the image?  Then just open the image in that file.
+            filename = values["_FILE_"]
+            palette_choice = ' '.join(values["_LIST_"])
             if os.path.exists(filename):
-                new_image = pixel_image_creator.main(filename)
-                bio = io.BytesIO()
-                new_image.save(bio, format="PNG")
-                window["_IMAGE_"].update(data=bio.getvalue())
+                new_image = pixel_image_creator.main(filename, palette_choice)
+                # bio = io.BytesIO()
+                # new_image.save(bio, format="PNG")
+                # window["_IMAGE_"].update(data=bio.getvalue())
 
     window.close()
 
