@@ -8,6 +8,7 @@ HSL instead of RGB.
 
 The next steps are to implement the following within the GUI:
 
+* [ ] Convert pixelation program from SimpleImage to PIL
 * [x] Load image to pixelate
 * [x] Dropdown list of palettes to choose from
     * [x] Some way to view palettes to make choice
