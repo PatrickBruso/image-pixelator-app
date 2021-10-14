@@ -83,7 +83,7 @@ def get_grid_average(x, y, image_location):
             counter += 1
 
     # get average of each RGB value and return that average as a pixel
-    print(int(red / counter), int(green / counter), int(blue / counter))
+    return int(sum(red) / counter), int(sum(green) / counter), int(sum(blue) / counter)
 
 
 def expand(image):
