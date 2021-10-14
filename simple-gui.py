@@ -2,7 +2,7 @@ import PySimpleGUI as sg
 import io
 import os
 from PIL import Image
-import pixel_image_creator
+import pil_version
 
 file_types = [("JPEG (*.jpg)", "*.jpg"),
               ("All files (*.*)", "*.*")]
@@ -57,7 +57,7 @@ def main():
             filename = values["_FILE_"]
             palette_choice = ' '.join(values["_LIST_"])
             if os.path.exists(filename):
-                new_image = pixel_image_creator.main(filename, palette_choice)
+                new_image = pil_version.main(filename, palette_choice)
                 # bio = io.BytesIO()
                 # new_image.save(bio, format="PNG")
                 # window["_IMAGE_"].update(data=bio.getvalue())
