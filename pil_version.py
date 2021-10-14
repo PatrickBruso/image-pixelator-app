@@ -1,5 +1,6 @@
 import math
 from PIL import Image
+from simpleimage import SimpleImage
 
 
 def main(file_location, palette_name):  # change to filename and take in the filename and then open as image
@@ -17,7 +18,8 @@ def main(file_location, palette_name):  # change to filename and take in the fil
     new_image = pixelate(image_copy, palette)
     pixel_image = expand(new_image)
 
-    pixel_image.show()  # or save new file and then send through the address?
+    # pixel_image.show()  # or save new file and then send through the address?
+    return pixel_image
 
 
 def shrink(image):
@@ -92,7 +94,8 @@ def expand(image):
     :return: enlarged image as a copy
     """
     # create blank canvas that is 4 times larger than original
-    expanded_image = SimpleImage.blank(image.width * 4, image.height * 4)
+    width, height = image.size
+    expanded_image = Image.new('RGB', (width * 4, height * 4))
 
     # set initial coordinates for target image and copy image
     y = 0
@@ -101,8 +104,8 @@ def expand(image):
     y_coord = 0
 
     # while loop to draw a 4x4 grid of pixels for each pixel in original image keeping the same RGB values
-    while y < image.height:
-        while x < image.width:
+    while y < height:
+        while x < width:
             expanded_image.set_pixel(x_coord, y_coord, image.get_pixel(x, y))
             expanded_image.set_pixel(x_coord + 1, y_coord, image.get_pixel(x, y))
             expanded_image.set_pixel(x_coord + 2, y_coord, image.get_pixel(x, y))
@@ -137,7 +140,8 @@ def pixelate(image, palette):
     :param palette: color palette to use
     :return: copy of image with color palette applied
     """
-    image_copy = SimpleImage.blank(image.width, image.height)
+    width, height = image.size
+    image_copy = Image.new('RGB', (width, height))
 
     for new_pixel in image_copy:
         x = new_pixel.x
