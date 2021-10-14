@@ -67,23 +67,23 @@ def get_grid_average(x, y, image):
     green = []
     blue = []
 
+    # open and load image
+    img = Image.open(image)
+    pix = img.load()
+
     counter = 0
 
     # for each 4x4 grid get the pixel and then add the RGB values to list
     for i in range(x, x + 4):
         for j in range(y, y + 4):
-            pixel = image.get_pixel(i, j)
-            red.append(pixel.red)
-            green.append(pixel.green)
-            blue.append(pixel.blue)
+            pixel_r, pixel_g, pixel_b, pixel_a = pix[i, j]
+            red.append(pixel_r)
+            green.append(pixel_g)
+            blue.append(pixel_b)
             counter += 1
 
     # get average of each RGB value and return that average as a pixel
-    pixel.red = sum(red) // counter
-    pixel.green = sum(green) // counter
-    pixel.blue = sum(blue) // counter
-
-    return pixel
+    print(int(red / counter), int(green / counter), int(blue / counter))
 
 
 def expand(image):
