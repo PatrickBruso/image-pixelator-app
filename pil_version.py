@@ -10,11 +10,9 @@ def main(file_location, palette_name):  # change to filename and take in the fil
     :return: original image and pixelated copy of image
     """
 
-    image = Image.open(file_location)
-
     palette = Image.open(f'Palettes/{palette_name}')
 
-    image_copy = shrink(image)
+    image_copy = shrink(file_location)
     new_image = pixelate(image_copy, palette)
     pixel_image = expand(new_image)
 
@@ -22,15 +20,17 @@ def main(file_location, palette_name):  # change to filename and take in the fil
     return pixel_image
 
 
-def shrink(image):
+def shrink(location):
     """
     Function that takes an image and returns a copy of that image that is reduced by 4 times.
     Each 4x4 grid of pixels in the original image will be 1 pixel in the new image.
-    :param image: image that user wants to shrink
+    :param location: file location of image that user wants to shrink
     :return: shrunken image as a copy
     """
+    image = Image.open(location)
     width, height = image.size
     image_copy = Image.new('RGB', (image.width // 4, image.height // 4))  # create bank image that is 4 times smaller
+    # pixels = image_copy.load()  # create new pixel mapping
 
     # set original coordinates and coordinates for image copy
     y = 0
@@ -42,7 +42,7 @@ def shrink(image):
     while y < height - 2:
         while x < width - 2:
             # copy image is created using the average of the 4x4 pixel grid
-            image_copy.set_pixel(x_coord, y_coord, get_grid_average(x, y, image))
+            image_copy.putpixel((x_coord, y_coord), get_grid_average(x, y, location))
             x_coord += 1
             x += 4
         x = 0
@@ -53,13 +53,13 @@ def shrink(image):
     return image_copy
 
 
-def get_grid_average(x, y, image):
+def get_grid_average(x, y, image_location):
     """
     Function that takes in an x and y coordinate for a pixel on an image and
     returns the average of the colors of a range that is 4x4 grid starting at that coordinate.
     :param x: x coordinate in image
     :param y: y coordinate in image
-    :param image: image to obtain colors from
+    :param image_location: image to obtain colors from
     :return: average pixel color over 2x2 grid area
     """
     # initialize empty lists for RGB values
@@ -68,7 +68,7 @@ def get_grid_average(x, y, image):
     blue = []
 
     # open and load image
-    img = Image.open(image)
+    img = Image.open(image_location)
     pix = img.load()
 
     counter = 0
@@ -76,7 +76,7 @@ def get_grid_average(x, y, image):
     # for each 4x4 grid get the pixel and then add the RGB values to list
     for i in range(x, x + 4):
         for j in range(y, y + 4):
-            pixel_r, pixel_g, pixel_b, pixel_a = pix[i, j]
+            pixel_r, pixel_g, pixel_b = pix[i, j]
             red.append(pixel_r)
             green.append(pixel_g)
             blue.append(pixel_b)
