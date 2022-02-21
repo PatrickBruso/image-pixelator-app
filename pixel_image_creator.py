@@ -33,7 +33,7 @@ def main(file_location, palette_name):  # change to filename and take in the fil
             pixel = pixel_image.get_pixel(x, y)
             new_image.putpixel((x, y), (pixel.red, pixel.green, pixel.blue))
     
-    new_image.save('Pixel Images/test.png') # need to figure out ability to name pixelated image 
+    return new_image
 
 
 def shrink(image):
