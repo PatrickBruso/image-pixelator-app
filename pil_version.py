@@ -50,6 +50,13 @@ def shrink(location):
         y_coord += 1
         y += 4
 
+    """
+    Why not just put the average back into a 2x2 pixel area instead of shrinking and then 
+    expanding the image?  Would make the program a lot smaller and faster.
+    
+    Would have to work on my counters for x, y, x_coord, and y_coord?
+    """
+
     return image_copy
 
 
