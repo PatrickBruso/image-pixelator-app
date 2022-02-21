@@ -7,6 +7,7 @@ Version 2.0 is an implementation in Tkinter to allow for palette choice.
 """
 
 from simpleimage import SimpleImage
+from PIL import Image
 import math
 
 
@@ -25,7 +26,14 @@ def main(file_location, palette_name):  # change to filename and take in the fil
     new_image = pixelate(image_copy, palette)
     pixel_image = expand(new_image)
 
-    pixel_image.show()  # or save new file and then send through the address?
+    # Code to save SimpleImage object as a PIL Image so it can be saved
+    new_image = Image.new('RGB', (pixel_image.width, pixel_image.height))
+    for x in range(pixel_image.width):
+        for y in range(pixel_image.height):
+            pixel = pixel_image.get_pixel(x, y)
+            new_image.putpixel((x, y), (pixel.red, pixel.green, pixel.blue))
+    
+    new_image.save('Pixel Images/test.png') # need to figure out ability to name pixelated image 
 
 
 def shrink(image):
