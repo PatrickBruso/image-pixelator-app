@@ -58,9 +58,9 @@ def main():
             palette_choice = ' '.join(values["_LIST_"])
             if os.path.exists(filename):
                 new_image = pixel_image_creator.main(filename, palette_choice)
-                # bio = io.BytesIO()
-                # new_image.save(bio, format="PNG")
-                # window["_IMAGE_"].update(data=bio.getvalue())
+                bio = io.BytesIO()
+                new_image.save(bio, format="PNG")
+                window["_IMAGE_"].update(data=bio.getvalue())
 
     window.close()
 
