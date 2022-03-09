@@ -8,13 +8,13 @@ HSL instead of RGB.
 
 The next steps are to implement the following within the GUI:
 
-* [ ] Convert pixelation program from SimpleImage to PIL
+* [x] Convert pixelation program from SimpleImage to PIL
 * [x] Load image to pixelate
 * [x] Dropdown list of palettes to choose from
     * [x] Some way to view palettes to make choice
 * [x] Call pixelate file upon image when Pixelate! button is clicked
 * [x] Show pixelated copy of image
-  * [ ] Show pixelated copy of image in GUI window instead of as separate popup
+  * [x] Show pixelated copy of image in GUI window instead of as separate popup
 * [ ] Ability to save pixelated image to disk
 
 ### Here is an example of the program:
